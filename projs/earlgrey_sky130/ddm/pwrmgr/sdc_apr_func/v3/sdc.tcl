@@ -1,0 +1,48 @@
+# pwrmgr APR SDC constraints (200MHz main/lc/esc, 200kHz slow/AON)
+create_clock -name clk_i    -period 41.67 [get_ports clk_i]
+create_clock -name clk_lc_i -period 41.67 [get_ports clk_lc_i]
+create_clock -name clk_esc_i -period 41.67 [get_ports clk_esc_i]
+create_clock -name clk_slow_i -period 5000 [get_ports clk_slow_i]
+
+# --- Input Delays ---
+set_input_delay 1 -clock clk_i [get_ports {wakeups_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {tl_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {sw_rst_req_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {rstreqs_i[*]}]
+set_input_delay 1 -clock clk_slow_i [get_ports rst_slow_ni]
+set_input_delay 1 -clock clk_i [get_ports rst_ni]
+set_input_delay 1 -clock clk_i [get_ports rst_main_ni]
+set_input_delay 1 -clock clk_lc_i [get_ports rst_lc_ni]
+set_input_delay 1 -clock clk_esc_i [get_ports rst_esc_ni]
+set_input_delay 1 -clock clk_i [get_ports {rom_ctrl_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {pwr_rst_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {pwr_otp_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports pwr_nvm_i]
+set_input_delay 1 -clock clk_i [get_ports {pwr_lc_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports pwr_cpu_i]
+set_input_delay 1 -clock clk_i [get_ports {pwr_clk_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {pwr_ast_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports ndmreset_req_i]
+set_input_delay 1 -clock clk_i [get_ports {lc_hw_debug_en_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {lc_dft_en_i[*]}]
+set_input_delay 1 -clock clk_esc_i [get_ports {esc_rst_tx_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {alert_rx_i[*]}]
+
+# --- Output Delays ---
+set_output_delay 1 -clock clk_i [get_ports {tl_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports strap_o]
+set_output_delay 1 -clock clk_i [get_ports {pwr_rst_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports pwr_otp_o]
+set_output_delay 1 -clock clk_i [get_ports pwr_lc_o]
+set_output_delay 1 -clock clk_i [get_ports {pwr_clk_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports {pwr_ast_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports low_power_o]
+set_output_delay 1 -clock clk_i [get_ports intr_wakeup_o]
+set_output_delay 1 -clock clk_i [get_ports {fetch_en_o[*]}]
+set_output_delay 1 -clock clk_esc_i [get_ports {esc_rst_rx_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports {alert_tx_o[*]}]
+
+# clk_slow_i (AON, 200kHz) is genuinely asynchronous to the io_div4-derived
+# clk_i/clk_lc_i/clk_esc_i group; CDC is handled by synchronizer flops
+# (e.g. u_slow_fsm), not by timing closure.
+set_clock_groups -asynchronous -group {clk_i clk_lc_i clk_esc_i} -group {clk_slow_i}
