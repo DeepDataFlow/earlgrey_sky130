@@ -1,0 +1,8 @@
+set vars(blkname)                            "flash_ctrl"
+set vars(build)                              "v1"
+set vars(depth)                              "3"
+set vars(eda_syn)                            "yosys"
+set vars(g2module)                           "flow"
+set vars(onoff_yosys)                        "1"
+set vars(pagename)                           "v1"
+set vars(view)                               "Flow"
