@@ -1,0 +1,8 @@
+set vars(c_people)                           "1"
+set vars(c_ppa)                              "1"
+set vars(c_schedule)                         "1"
+set vars(c_tech)                             "1"
+set vars(earlgrey_sky130)                    "/home/york/github/fs/g2/earlgrey_sky130/projs/earlgrey_sky130"
+set vars(g2module)                           "projs"
+set vars(pagename)                           "G2 Projs"
+set vars(publish)                            "earlgrey_sky130"
