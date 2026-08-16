@@ -1,0 +1,5 @@
+set vars(c1_Count)                           "1"
+set vars(c1_Latest)                          "1"
+set vars(depth)                              "2"
+set vars(g2module)                           "ddm-blk"
+set vars(pagename)                           "earlgrey_pd_aon"
