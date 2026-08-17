@@ -1,4 +1,4 @@
-set vars(WxH)                                "350umx350um"
+set vars(WxH)                                "1600umx1600um"
 set vars(blkname)                            "pinmux"
 set vars(depth)                              "3"
 set vars(g2module)                           "spec-blk"

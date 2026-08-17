@@ -1,4 +1,4 @@
-set vars(WxH)                                "400umx400um"
+set vars(WxH)                                "3000umx3000um"
 set vars(blkname)                            "xbar_main"
 set vars(depth)                              "3"
 set vars(g2module)                           "spec-blk"

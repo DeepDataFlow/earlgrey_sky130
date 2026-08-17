@@ -1,4 +1,4 @@
-set vars(WxH)                                "250umx250um"
+set vars(WxH)                                "2400umx2400um"
 set vars(blkname)                            "lc_ctrl"
 set vars(depth)                              "3"
 set vars(g2module)                           "spec-blk"
