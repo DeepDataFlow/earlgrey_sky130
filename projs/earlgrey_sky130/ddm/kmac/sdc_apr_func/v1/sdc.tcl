@@ -1,0 +1,30 @@
+# kmac APR SDC constraints (auto-generated)
+create_clock -name clk_i -period 6.67 [get_ports clk_i]
+create_clock -name clk_edn_i -period 6.67 [get_ports clk_edn_i]
+
+# Each clock group below is a genuinely separate physical clock root
+# in the real chip (per OpenTitan's clock tree); CDC between them is
+# handled by synchronizer flops in the RTL, not by timing closure.
+set_clock_groups -asynchronous -group {clk_i} -group {clk_edn_i}
+
+# --- Input Delays ---
+set_input_delay 1 -clock clk_i [get_ports {tl_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports rst_shadowed_ni]
+set_input_delay 1 -clock clk_i [get_ports rst_ni]
+set_input_delay 1 -clock clk_i [get_ports rst_edn_ni]
+set_input_delay 1 -clock clk_i [get_ports {lc_escalate_en_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {keymgr_key_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {entropy_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {app_i[*]}]
+set_input_delay 1 -clock clk_i [get_ports {alert_rx_i[*]}]
+
+# --- Output Delays ---
+set_output_delay 1 -clock clk_i [get_ports {tl_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports intr_kmac_err_o]
+set_output_delay 1 -clock clk_i [get_ports intr_kmac_done_o]
+set_output_delay 1 -clock clk_i [get_ports intr_fifo_empty_o]
+set_output_delay 1 -clock clk_i [get_ports {idle_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports entropy_o]
+set_output_delay 1 -clock clk_i [get_ports en_masking_o]
+set_output_delay 1 -clock clk_i [get_ports {app_o[*]}]
+set_output_delay 1 -clock clk_i [get_ports {alert_tx_o[*]}]
